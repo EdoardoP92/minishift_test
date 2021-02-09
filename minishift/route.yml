@@ -1,0 +1,26 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: minishift-test
+  name: minishift-test
+  namespace: test
+spec:
+  host: minishift.test.192.168.99.103.nip.io
+  path: /dummy
+  port:
+    targetPort: 1080-1080
+  to:
+    kind: Service
+    name: minishift-test
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - conditions:
+        - lastTransitionTime: '2021-02-08T11:18:21Z'
+          status: 'True'
+          type: Admitted
+      host: minishift.test.192.168.99.103.nip.io
+      routerName: router
+      wildcardPolicy: None
